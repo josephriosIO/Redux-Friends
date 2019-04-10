@@ -1,22 +1,32 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 class Login extends Component {
   state = {
-    username: "",
-    password: ""
+    auth: {
+      username: "",
+      password: ""
+    }
   };
 
   handleChanges = e => {
     this.setState({
-      [e.target.name]: e.target.value
+      auth: {
+        ...this.state.auth,
+        [e.target.name]: e.target.value
+      }
     });
+  };
+
+  submitForm = e => {
+    e.preventDefault();
   };
 
   render() {
     return (
       <div>
         <h1>Login</h1>
-        <form>
+        <form onSubmit={this.submitForm}>
           <input
             onChange={this.handleChanges}
             type="text"
@@ -38,4 +48,7 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default connect(
+  null,
+  {}
+)(Login);
