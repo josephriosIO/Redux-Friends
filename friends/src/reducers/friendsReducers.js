@@ -1,7 +1,18 @@
-import { FETCHING, SUCCESS, FAILURE } from "../actions";
+import {
+  FETCHING,
+  SUCCESS,
+  FAILURE,
+  FETCHING_FRIENDS,
+  SUCCESS_FRIENDS,
+  FAILURE_GETTING_FRIENDS
+} from "../actions";
 
 const intitalState = {
-  friends: null,
+  friends: [],
+  deletingFriend: false,
+  fetchingFriend: false,
+  fetchedFriends: false,
+  updatingFriend: false,
   isFetching: false,
   isLoggedIn: false,
   error: ""
@@ -26,6 +37,23 @@ export const friendsReducers = (state = intitalState, action) => {
         isFetching: false,
         isLoggedIn: false,
         err: action.payload
+      };
+    case FETCHING_FRIENDS:
+      return {
+        fetchingFriend: true,
+        error: ""
+      };
+    case SUCCESS_FRIENDS:
+      return {
+        friends: action.payload,
+        error: "",
+        fetchingFriend: false,
+        fetchedFriends: true
+      };
+    case FAILURE_GETTING_FRIENDS:
+      return {
+        error: action.payload,
+        fetchingFriend: false
       };
     default:
       return state;

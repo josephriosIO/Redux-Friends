@@ -33,7 +33,7 @@ class Login extends Component {
 
   render() {
     if (this.props.logged) {
-      this.props.history.push("/protected");
+      this.props.history.push("/friendslist");
     }
     return (
       <div>
