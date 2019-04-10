@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { logginIn } from "../../actions";
 
 class Login extends Component {
   state = {
@@ -20,9 +21,20 @@ class Login extends Component {
 
   submitForm = e => {
     e.preventDefault();
+    this.props.logginIn(this.state.auth);
+
+    this.setState({
+      auth: {
+        username: "",
+        password: ""
+      }
+    });
   };
 
   render() {
+    if (this.props.logged) {
+      this.props.history.push("/protected");
+    }
     return (
       <div>
         <h1>Login</h1>
@@ -48,7 +60,11 @@ class Login extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  logged: state.friendsReducers.isLoggedIn
+});
+
 export default connect(
-  null,
-  {}
+  mapStateToProps,
+  { logginIn }
 )(Login);

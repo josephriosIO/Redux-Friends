@@ -4,8 +4,21 @@ export const FETCHING = "FETCHING";
 export const SUCCESS = "SUCCESS";
 export const FAILURE = "FAILURE";
 
-export const logginIn = () => async dispatch => {
+export const logginIn = creds => async dispatch => {
   dispatch({
     type: FETCHING
   });
+  try {
+    const res = await axios.post("http://localhost:5000/api/login", creds);
+    localStorage.setItem("token", res.data.payload);
+    dispatch({
+      type: SUCCESS,
+      payload: res.data.payload
+    });
+  } catch (err) {
+    dispatch({
+      type: FAILURE,
+      payload: err
+    });
+  }
 };

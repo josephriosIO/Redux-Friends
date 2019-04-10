@@ -15,6 +15,18 @@ export const friendsReducers = (state = intitalState, action) => {
         isLoggedIn: false,
         error: ""
       };
+    case SUCCESS:
+      return {
+        isFetching: false,
+        isLoggedIn: true,
+        error: ""
+      };
+    case FAILURE:
+      return {
+        isFetching: false,
+        isLoggedIn: false,
+        err: action.payload
+      };
     default:
       return state;
   }
