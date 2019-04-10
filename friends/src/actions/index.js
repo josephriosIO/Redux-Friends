@@ -6,6 +6,9 @@ export const FAILURE = "FAILURE";
 export const FETCHING_FRIENDS = "FETCHING_FRIENDS";
 export const SUCCESS_FRIENDS = "SUCCESS_FRIENDS";
 export const FAILURE_GETTING_FRIENDS = "FAILURE_GETTING_FRIENDS";
+export const ADD_FRIEND = "ADD_FRIEND";
+export const DELETE_FRIEND = "DELETE_FRIEND";
+export const UPDATE_FRIEND = "UPDATE_FRIEND";
 
 export const logginIn = creds => async dispatch => {
   dispatch({
@@ -44,4 +47,14 @@ export const getFriends = () => async dispatch => {
       type: FAILURE_GETTING_FRIENDS
     });
   }
+};
+
+export const addFriend = friend => async dispatch => {
+  const res = await axios.post("http://localhost:5000/api/friends", friend, {
+    headers: { authorization: localStorage.getItem("token") }
+  });
+  dispatch({
+    type: ADD_FRIEND,
+    payload: res.data
+  });
 };

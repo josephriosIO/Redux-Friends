@@ -4,7 +4,10 @@ import {
   FAILURE,
   FETCHING_FRIENDS,
   SUCCESS_FRIENDS,
-  FAILURE_GETTING_FRIENDS
+  FAILURE_GETTING_FRIENDS,
+  ADD_FRIEND,
+  DELETE_FRIEND,
+  UPDATE_FRIEND
 } from "../actions";
 
 const intitalState = {
@@ -54,6 +57,11 @@ export const friendsReducers = (state = intitalState, action) => {
       return {
         error: action.payload,
         fetchingFriend: false
+      };
+    case ADD_FRIEND:
+      return {
+        ...state,
+        friends: [action.payload, ...state.friends]
       };
     default:
       return state;
