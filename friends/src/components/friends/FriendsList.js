@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getFriends } from "../../actions";
+import Friend from "./Friend";
 
 const FriendsList = props => {
   const getTheFriends = () => {
@@ -14,9 +15,7 @@ const FriendsList = props => {
       {props.fetchedFriends &&
         props.friends.map(friend => (
           <div key={friend.id}>
-            <h1>{friend.name}</h1>
-            <h3>{friend.age}</h3>
-            <p>{friend.email}</p>
+            <Friend friend={friend} />
           </div>
         ))}
     </div>

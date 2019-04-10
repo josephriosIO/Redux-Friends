@@ -58,3 +58,13 @@ export const addFriend = friend => async dispatch => {
     payload: res.data
   });
 };
+
+export const deleteFriend = id => async dispatch => {
+  const res = await axios.delete(`http://localhost:5000/api/friends/${id}`, {
+    headers: { authorization: localStorage.getItem("token") }
+  });
+  dispatch({
+    type: DELETE_FRIEND,
+    payload: res.data
+  });
+};
