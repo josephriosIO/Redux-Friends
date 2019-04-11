@@ -38,6 +38,8 @@ class Login extends Component {
     return (
       <div>
         <h1>Login</h1>
+
+        {this.props.error && <p className="error">{this.props.error}</p>}
         <form onSubmit={this.submitForm}>
           <input
             onChange={this.handleChanges}
@@ -61,7 +63,9 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-  logged: state.friendsReducers.isLoggedIn
+  logged: state.friendsReducers.isLoggedIn,
+  error: state.friendsReducers.error,
+  isFetching: state.friendsReducers.isFetching
 });
 
 export default connect(

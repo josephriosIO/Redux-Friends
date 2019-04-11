@@ -7,11 +7,13 @@ import {
   FAILURE_GETTING_FRIENDS,
   ADD_FRIEND,
   DELETE_FRIEND,
-  UPDATE_FRIEND
+  UPDATE_FRIEND,
+  GET_FRIEND
 } from "../actions";
 
 const intitalState = {
   friends: [],
+  friend: {},
   deletingFriend: false,
   fetchingFriend: false,
   fetchedFriends: false,
@@ -39,7 +41,7 @@ export const friendsReducers = (state = intitalState, action) => {
       return {
         isFetching: false,
         isLoggedIn: false,
-        err: action.payload
+        error: action.payload
       };
     case FETCHING_FRIENDS:
       return {
@@ -58,6 +60,11 @@ export const friendsReducers = (state = intitalState, action) => {
         error: action.payload,
         fetchingFriend: false
       };
+    case GET_FRIEND:
+      return {
+        ...state,
+        friend: action.payload
+      };
     case ADD_FRIEND:
       return {
         ...state,
@@ -67,6 +74,13 @@ export const friendsReducers = (state = intitalState, action) => {
       return {
         ...state,
         friends: state.friends.filter(friend => friend.id !== action.payload)
+      };
+    case UPDATE_FRIEND:
+      return {
+        ...state,
+        friends: state.friends.map(friend =>
+          friend.id === action.payload.id ? (friend = action.payload) : friend
+        )
       };
     default:
       return state;

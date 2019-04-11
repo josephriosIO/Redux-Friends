@@ -8,7 +8,6 @@ const FriendsList = props => {
     props.getFriends();
   };
 
-  console.log(props.friends);
   return (
     <div>
       <button onClick={getTheFriends}>get some friends!</button>

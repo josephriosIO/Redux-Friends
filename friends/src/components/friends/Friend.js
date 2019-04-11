@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { deleteFriend } from "../../actions";
 class Friend extends Component {
@@ -12,12 +11,11 @@ class Friend extends Component {
     const { id, name, email, age } = this.props.friend;
     return (
       <div className="card card-body mb-3">
-        <h4>
-          <h1>{name}</h1>
-          <h3>{age}</h3>
-          <p>{email}</p>
-          <button onClick={this.onDeleteClick.bind(this, id)}>delete</button>
-        </h4>
+        <h1>{name}</h1>
+        <h3>{age}</h3>
+        <p>{email}</p>
+        <Link to={`friends/edit/${id}`}>edit</Link>
+        <button onClick={this.onDeleteClick.bind(this, id)}>delete</button>
       </div>
     );
   }
