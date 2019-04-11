@@ -6,8 +6,7 @@ class EditFriend extends Component {
   state = {
     name: "",
     email: "",
-    age: "",
-    errors: {}
+    age: ""
   };
 
   componentDidMount() {
@@ -26,22 +25,6 @@ class EditFriend extends Component {
 
     const { name, email, age } = this.state;
 
-    // Check For Errors
-    if (name === "") {
-      this.setState({ errors: { name: "Name is required" } });
-      return;
-    }
-
-    if (email === "") {
-      this.setState({ errors: { email: "Email is required" } });
-      return;
-    }
-
-    if (age === "") {
-      this.setState({ errors: { age: "Phone is required" } });
-      return;
-    }
-
     const newFriend = {
       name,
       email,
@@ -56,8 +39,7 @@ class EditFriend extends Component {
     this.setState({
       name: "",
       email: "",
-      age: "",
-      errors: {}
+      age: ""
     });
 
     this.props.history.push("/friendslist");
@@ -69,9 +51,9 @@ class EditFriend extends Component {
     const { name, email, age, errors } = this.state;
 
     return (
-      <div className="card mb-3">
-        <div className="card-header">edit Contact</div>
-        <div className="card-body">
+      <div>
+        <div>edit Friend</div>
+        <div>
           <form onSubmit={this.onSubmit}>
             <input
               label="Name"
@@ -79,7 +61,6 @@ class EditFriend extends Component {
               placeholder="Enter Name"
               value={name}
               onChange={this.onChange}
-              error={errors.name}
             />
             <input
               label="Email"
@@ -88,7 +69,6 @@ class EditFriend extends Component {
               placeholder="Enter Email"
               value={email}
               onChange={this.onChange}
-              error={errors.email}
             />
             <input
               label="age"
@@ -96,13 +76,8 @@ class EditFriend extends Component {
               placeholder="Enter age"
               value={age}
               onChange={this.onChange}
-              error={errors.age}
             />
-            <input
-              type="submit"
-              value="edit Friend"
-              className="btn btn-light btn-block"
-            />
+            <input type="submit" value="edit Friend" />
           </form>
         </div>
       </div>
