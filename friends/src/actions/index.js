@@ -1,11 +1,14 @@
 import axios from "axios";
-
+//logins
 export const FETCHING = "FETCHING";
 export const SUCCESS = "SUCCESS";
 export const FAILURE = "FAILURE";
+//getting your friends
 export const FETCHING_FRIENDS = "FETCHING_FRIENDS";
 export const SUCCESS_FRIENDS = "SUCCESS_FRIENDS";
 export const FAILURE_GETTING_FRIENDS = "FAILURE_GETTING_FRIENDS";
+
+// function stuff
 export const GET_FRIEND = "GET_FRIEND";
 export const ADD_FRIEND = "ADD_FRIEND";
 export const DELETE_FRIEND = "DELETE_FRIEND";
