@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { logginIn } from "../../actions";
+import Loader from "react-loader-spinner";
 
 class Login extends Component {
   state = {
@@ -55,7 +56,13 @@ class Login extends Component {
             name="password"
             placeholder="enter password here..."
           />
-          <button value="submit">submit</button>
+          <button value="submit">
+            {this.props.isFetching ? (
+              <Loader type="ThreeDots" color="#1f2a38" height="12" width="26" />
+            ) : (
+              "log in"
+            )}
+          </button>
         </form>
       </div>
     );
