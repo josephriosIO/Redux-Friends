@@ -14,7 +14,9 @@ class Friend extends Component {
         <h1>{name}</h1>
         <h3>{age}</h3>
         <p>{email}</p>
-        <Link to={`friends/edit/${id}`}>edit</Link>
+        <button>
+          <Link to={`friends/edit/${id}`}>edit</Link>
+        </button>
         <button onClick={this.onDeleteClick.bind(this, id)}>delete</button>
       </div>
     );

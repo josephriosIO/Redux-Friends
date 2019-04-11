@@ -53,6 +53,7 @@ export const friendsReducers = (state = intitalState, action) => {
         friends: action.payload,
         error: "",
         fetchingFriend: false,
+        isLoggedIn: true,
         fetchedFriends: true
       };
     case FAILURE_GETTING_FRIENDS:
